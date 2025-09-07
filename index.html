@@ -1,87 +1,119 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>홈페이지 업데이트중</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      font-family: 'Noto Sans KR', sans-serif;
-      background: #000 url('background.png') no-repeat center/contain fixed;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      position: relative; /* 회사명 위치 지정을 위해 추가 */
+    :root{
+      --overlay: rgba(0,0,0,.45);
+      --blue: #4da6ff;
+      --text: #fff;
     }
-    .container {
-      background: rgba(0,0,0,0.4);
-      padding: 40px;
-      border-radius: 10px;
+    *{box-sizing:border-box}
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:'Noto Sans KR', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+      color:var(--text);
     }
-    h1 { font-size: 3rem; margin-bottom: 20px; }
-    p { margin-bottom: 20px; }
-    .progress-bar {
-      width: 300px;
-      background: #555;
-      border-radius: 20px;
-      overflow: hidden;
-      margin: 20px auto;
+    body{
+      /* ✅ 배경 꽉 채우기 (검은 여백 제거) */
+      background: #000 url('background.png') no-repeat center center fixed;
+      background-size: contain;      
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      padding: clamp(12px, 2vw, 24px);
     }
-    .progress-bar div {
-      height: 20px;
-      width: 40%; /* 진행률 */
-      background: #4da6ff;
+
+    /* ✅ 오른쪽 상단 회사명 고정 */
+    .company-name{
+      position:absolute;
+      top: 5% ;
+      right : 20% ;  /* left:65% → right 로 정확히 우상단 */
+      font-weight: 800;
+      font-size: clamp(16px, 1.4vw, 22px);
+      letter-spacing:.3px;
+      color:#fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,.35);
+      user-select:none;
     }
-    .btn {
-      background: #4da6ff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      color: white;
-      cursor: pointer;
-      font-size: 1rem;
+
+    /* ✅ 중앙 패널(크게, 가로폭 넓게) */
+    .container{
+  background: rgba(0,0,0,0.4);
+  padding: 30px 50px;   /* 안쪽 여백 (세로, 가로) */
+  border-radius: 12px;
+  width: 60%;           /* 화면 가로의 60% */
+  max-width: 700px;     /* 최대 700px까지만 */
+  margin: 0 auto;       /* 중앙 정렬 */
+}
+
+    /* ✅ 타이틀/본문 사이즈 업 */
+    h1{
+      margin: 0 0 clamp(12px, 2.4vw, 20px);
+      font-weight: 900;
+      line-height: 1.1;
+      font-size: clamp(28px, 6vw, 64px);  /* 크게 */
+      text-shadow: 0 3px 8px rgba(0,0,0,.35);
+      letter-spacing: .5px;
     }
-    .social-icons {
-      margin-top: 30px;
+    p.lead{
+      margin: 0 0 clamp(20px, 3vw, 28px);
+      font-size: clamp(14px, 2.2vw, 22px);
+      color:#eaeaea;
     }
-    .social-icons a {
-      color: white;
-      margin: 0 10px;
-      font-size: 1.5rem;
-      text-decoration: none;
+
+    /* ✅ 진행바 넓게 & 두껍게 */
+    .progress-wrap{
+      width: 70%;         /* 두 번째 이미지 느낌으로 넓게 */
+      margin: 0 auto clamp(10px, 2.2vw, 24px);
+      background:#505050;
+      border-radius: 999px;
+      overflow:hidden;
+      height: 40px;                    /* 두께 증가 */
+      box-shadow: inset 0 2px 6px rgba(0,0,0,.35);
     }
-    footer {
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: #ccc;
+    .progress{
+      width: 45%;                      /* 진행률 (원하면 JS로 제어) */
+      height: 100%;
+      background: var(--blue);
     }
-    /* 오른쪽 상단 회사명 */
-    .company-name {
-      position: absolute;
-      top: 20px;
-      left: 65%;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #fff;
+    .progress-label{
+      margin-top: clamp(8px,1.4vw,12px);
+      font-size: clamp(12px, 1.8vw, 18px);
+      color:#e0e0e0;
+    }
+
+    footer{
+      margin-top: clamp(16px, 3vw, 24px);
+      font-size: clamp(10px, 1.6vw, 14px);
+      color:#cfcfcf;
+    }
+
+    /* ✅ 아주 작은 화면 대응 */
+    @media (max-width: 370px){
+      .progress-wrap{height:18px}
     }
   </style>
 </head>
 <body>
-  <!-- 오른쪽 상단 회사명 -->
   <div class="company-name">FNBKOREA Inc.</div>
 
   <div class="container">
     <h1>홈페이지 업데이트 중</h1>
-    <p>곧 새로운 모습으로 찾아뵙겠습니다.</p>
-    
-    <div class="progress-bar">
-      <div></div>
+    <p class="lead">곧 새로운 모습으로 찾아뵙겠습니다.</p>
+
+    <div class="progress-wrap">
+      <div class="progress"></div>
     </div>
-    <p>0% — 100%</p>
+    <div class="progress-label">0% — 100%</div>
 
     <footer>© 2026 by Under Construction. Created FNBKOREA Inc.</footer>
   </div>
