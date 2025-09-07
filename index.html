@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>홈페이지 업데이트중</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #000 url('background.png') no-repeat center/contain fixed;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      position: relative; /* 회사명 위치 지정을 위해 추가 */
+    }
+    .container {
+      background: rgba(0,0,0,0.4);
+      padding: 40px;
+      border-radius: 10px;
+    }
+    h1 { font-size: 3rem; margin-bottom: 20px; }
+    p { margin-bottom: 20px; }
+    .progress-bar {
+      width: 300px;
+      background: #555;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 20px auto;
+    }
+    .progress-bar div {
+      height: 20px;
+      width: 40%; /* 진행률 */
+      background: #4da6ff;
+    }
+    .btn {
+      background: #4da6ff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .social-icons {
+      margin-top: 30px;
+    }
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5rem;
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #ccc;
+    }
+    /* 오른쪽 상단 회사명 */
+    .company-name {
+      position: absolute;
+      top: 20px;
+      left: 65%;
+      font-weight: bold;
+      font-size: 1rem;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- 오른쪽 상단 회사명 -->
+  <div class="company-name">FNBKOREA Inc.</div>
+
+  <div class="container">
+    <h1>홈페이지 업데이트 중</h1>
+    <p>곧 새로운 모습으로 찾아뵙겠습니다.</p>
+    
+    <div class="progress-bar">
+      <div></div>
+    </div>
+    <p>0% — 100%</p>
+
+    <footer>© 2026 by Under Construction. Created FNBKOREA Inc.</footer>
+  </div>
+</body>
+</html>
